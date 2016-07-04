@@ -1,0 +1,98 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This is the template for submission to HPCA 2016
+% The cls file is a modified from  'sig-alternate.cls'
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{sig-alternate} 
+\usepackage{mathptmx} % This is Times font
+
+\newcommand{\ignore}[1]{}
+\usepackage{fancyhdr}
+\usepackage[normalem]{ulem}
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
+\usepackage{algorithmicx,algorithm}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+
+%%%%%%%%%%%---SETME-----%%%%%%%%%%%%%
+\newcommand{\hpcasubmissionnumber}{NaN}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\fancypagestyle{firstpage}{
+  \fancyhf{}
+\setlength{\headheight}{50pt}
+\renewcommand{\headrulewidth}{0pt}
+  \fancyhead[C]{\normalsize{HPCA 2016 Submission
+      \textbf{\#\hpcasubmissionnumber} \\ Confidential Draft: DO NOT DISTRIBUTE}} 
+  \pagenumbering{arabic}
+}  
+
+%%%%%%%%%%%---SETME-----%%%%%%%%%%%%%
+\title{Topologic-aware Allocation Policies for Jellyfish } 
+\author{Jose A. Pascual, Javier Navaridas, Alejandro Erickson and Ian }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+\thispagestyle{firstpage}
+\pagestyle{plain}
+
+\begin{abstract}
+
+
+
+\end{abstract}
+
+\section{Introduction}
+\label{introduction}
+
+Jellyfish topology \cite{jellyfish} has been recently proposed as a high bandwidth and low latency interconnect for large scale data centers and HPC systems. This network is a \textit{degree-bounded} random regular graph (RRG) among the top-of-rack (ToR) switches.  
+
+Although jellyfish provides high connectivity among switches, classical routing policies are not able to exploit the path diversity offered. The original work evaluated tweo well-known routing policies, shortest path \cite{} and ECMP \cite{}. As these routings did not perform well, the proposed the use of Ki-Shortest Path (KSP) \cite{} as an alternative policy.  
+
+These work have studied jellyfish both theoretically, puting bounds to topological properties, and empirically evaluating the performance of several communication patterns. However none of them have consider the natural scenario in which this topology could be used: data centers or HPC centers where many applications run concurrently. To the best of our knoledde, there is no work devoted to evlauate the performance of such application in these kind of topologies.
+
+The assignemnt of resources to application has been widely studied in the context of HPC. Those works clearly differenciate three stages: selection of the application to be executed, allocation of the resources to that application and mapping of the taks that compose the application to the physical servers. 
+
+The objective of this work is the evaluation of the performance of these routing policies in multi-application scenarios. 
+
+The rest of the paper is organized as follow. Section \ref{preliminaries} 
+
+\section{Preliminaries}
+\label{preliminaries}
+
+
+
+\section{Allocation in Jellyfish}
+\label{locality}
+
+\begin{figure}[t]
+  \begin{tikzpicture}
+    \input{plots/plot_dynamic_all2one}     
+  \end{tikzpicture}
+  \caption{Completion time in second employed to process three traffic patterns comparing.}
+\label{fig:plot-dynamic}
+\end{figure}
+
+
+\section{Locality and Contiguity in Jellyfish}
+\label{locality}
+
+\section{Experimental Set-up}
+\label{experimental}
+
+\section{Analysis of the Results}
+\label{analysis}
+
+\section{Conclusiosn ans Future Work}
+\label{conclusions}
+
+%%%%%%% -- PAPER CONTENT ENDS -- %%%%%%%%
+
+%%%%%%%%% -- BIB STYLE AND FILE -- %%%%%%%%
+\bibliographystyle{ieeetr}
+\bibliography{hpca16}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

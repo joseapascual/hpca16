@@ -1,0 +1,91 @@
+\begin{axis}[width=\linewidth,
+    %height=5cm,
+    %    scale only axis,
+    %    axis y line*=left,
+    %    ytick={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19},
+    ylabel={Completion time (s)},
+    xtick={0,1,2,3,4,5},
+    xticklabels={
+        1,
+      2,
+      3,
+      4,
+      5,
+      6
+  },
+    x tick label style={rotate=90,anchor=east},
+    ybar=0pt,
+    bar width=6,
+    unbounded coords=jump,
+    %    grid=major,
+    legend entries={
+        1,      
+      2,
+      3,
+        4
+    },
+    legend style={font=\footnotesize},
+    legend pos=north west,
+    %    mark size=4
+    ]
+    % \addplot+[only marks,mark=asterisk,error bars/.cd,y dir=both,y explicit]   
+    % table [x=x,y=y,y error expr= \thisrow{sigma}*1.96] {
+    \addplot+[
+    ]
+    table[
+        meta=network,
+    x expr=\coordindex,
+    y=DR,
+    %y expr=100.0*(\thisrow{mean_dr_list}-\thisrow{mean_bfs})/\thisrow{mean_dr_list},
+]
+    {plots/data/all2one.dat};
+    \addplot+[
+        % \iferrorbars
+        % error bars/.cd,
+        % y dir=both,
+        % y explicit
+        % \fi
+    ]
+    table[
+        meta=network,
+    x expr=\coordindex,
+    y =GPE,
+    % \iferrorbars
+    % y error expr=\thisrow{std_savings_ex_list}/100
+    % \fi
+]
+    {plots/data/all2one.dat};
+    \addplot+[
+        % \iferrorbars
+        % error bars/.cd,
+        % y dir=both,
+        % y explicit
+        % \fi
+    ]
+    table[
+        meta=network,
+    x expr=\coordindex,
+    y =GPI,
+    % \iferrorbars
+    % y error expr=\thisrow{std_savings_int_list}/100
+    % \fi
+]
+    {plots/data/all2one.dat};
+    \addplot+[
+        % \iferrorbars
+        % error bars/.cd,
+        % y dir=both,
+        % y explicit
+        % \fi
+    ]
+    table[
+        meta=network,
+    x expr=\coordindex,
+    y = GP0,
+    %discard if={k}{2},
+    % \iferrorbars
+    % y error expr=\thisrow{std_savings_ti_list}/100
+    % \fi
+]
+    {plots/data/all2one.dat};
+\end{axis}
