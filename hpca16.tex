@@ -14,11 +14,12 @@
 \usepackage{algorithmicx,algorithm}
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
+\usepackage{framed}
 
 %%%%%%%%%%%---SETME-----%%%%%%%%%%%%%
 \newcommand{\hpcasubmissionnumber}{NaN}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\newcommand{\todo}[1]{\begin{framed}\textcolor{red}{TODO: #1}\end{framed}}
 \fancypagestyle{firstpage}{
   \fancyhf{}
 \setlength{\headheight}{50pt}
@@ -51,13 +52,13 @@ Jellyfish topology \cite{jellyfish} has been recently proposed as a high bandwid
 
 As stated in the original paper \cite{jellyfish}, routing in jellyfish is a challenge. Although jellyfish provides high connectivity among switches, classical routing policies are not able to exploit the path diversity offered. In that work the authors evaluated two well-known routing policies, shortest path (SP) and Equal-cost Multi-path (ECMP), assesing that the use of the shortest paths does not provide enough path diversity to utilize the full capacity of the network. This issue was solved using the K-Shortest Path (KSP) \cite{yen} routing policy that uses more paths at the cost of being longer. Although KSP perfoms well compared to SP and ECMP, the author in \cite{llksp} showed that jellyfish has several features that make it ineffective. In particular they stated the possibly large number of source-destinations (SD) pairs that will share the same K shortest-paths and the random number of short paths between each pair of switches. 
 
-These work have studied jellyfish both theoretically, puting bounds to topological properties, and empirically evaluating the performance of several communication patterns. However none of them have consider the natural scenario in which this topology could be used: data centers or HPC centers where many applications run concurrently. To the best of our knoledde, there is no work devoted to evlauate the performance of such application in these kind of topologies.
+These works have studied jellyfish both theoretically, puting bounds to topological properties, and empirically evaluating the performance of several communication patterns. However none of them have consider the natural scenario in which this topology could be used: data centers or HPC centers where many applications run concurrently. To the best of our knowledge, there is no work devoted to evaluate the performance of such applications in this topology.
 
 The assignemnt of resources to application has been widely studied in the context of HPC. Those works clearly differenciate three stages: selection of the application to be executed, allocation of the resources to that application and mapping of the taks that compose the application to the physical servers. 
 
 The objective of this work is the evaluation of the performance of these routing policies in multi-application scenarios. 
 
-The rest of the paper is organized as follow. Section \ref{preliminaries} 
+The rest of the paper is organized as follow. Section \ref{preliminaries} \todo{Write oraganization} 
 
 \section{Preliminaries}
 \label{preliminaries}
@@ -66,6 +67,18 @@ The rest of the paper is organized as follow. Section \ref{preliminaries}
 
 \section{Allocation in Jellyfish}
 \label{locality}
+
+When an application is submitted to be executed, the allocator is in charge of finding the appropiate set of resources to place it. 
+In this section we analize the allocation strategies used in \cite{llksp}.
+
+\begin{itemize}
+    \item Sequential: 
+    \item Random:
+    \item Trace-based allocation: 
+\end{itemize}
+
+
+
 
 \begin{figure}[t]
   \begin{tikzpicture}
