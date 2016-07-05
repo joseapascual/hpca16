@@ -6,15 +6,15 @@
 \documentclass{sig-alternate} 
 \usepackage{mathptmx} % This is Times font
 
-\newcommand{\ignore}[1]{}
 \usepackage{fancyhdr}
 \usepackage[normalem]{ulem}
 \usepackage[hyphens]{url}
-\usepackage{hyperref}
 \usepackage{algorithmicx,algorithm}
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
 \usepackage{framed}
+\usepackage{epsfig}
+\usepackage{graphicx}
 
 %%%%%%%%%%%---SETME-----%%%%%%%%%%%%%
 \newcommand{\hpcasubmissionnumber}{NaN}
@@ -31,7 +31,7 @@
 
 %%%%%%%%%%%---SETME-----%%%%%%%%%%%%%
 \title{Topologic-aware Allocation Policies for Jellyfish } 
-\author{Jose A. Pascual, Javier Navaridas, Alejandro Erickson and Ian }
+%\author{Jose A. Pascual, Javier Navaridas, Alejandro Erickson and Ian }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
@@ -58,23 +58,58 @@ The assignemnt of resources to application has been widely studied in the contex
 
 The objective of this work is the evaluation of the performance of these routing policies in multi-application scenarios. 
 
-The rest of the paper is organized as follow. Section \ref{preliminaries} \todo{Write oraganization} 
+The rest of the paper is organized as follow. Section \ref{background} \todo{Write oraganization} 
 
-\section{Preliminaries}
-\label{preliminaries}
+\section{Background}
+\label{background}
+
+In this section we describe thoroughly the jellyfish topology and give some definitions and properties that will be used in the rest of the paper. Furthermore, we describe the four routing policies developed for jellyfish asessing the pros and cons of each one of them.
+
+\subsection{Jellyfish topology}
+\label{subsec:jellyfish}
+
+Jellyfish is a network topology in which the switches are connected randomly. We denote jellyfish as RRG(N,k,r) where N is the number of switches, k is the number of ports of the switches and r is the number of ports used to connect to other switches.  
+\begin{figure}[t]
+    \centering 
+    \includegraphics[width=\linewidth]{figures/jellyfish.eps}
+    \caption{}
+    \label{fig:jellyfish}
+\end{figure}
 
 
+\subsection{Routing policies}
+\label{subsec:routing}
+
+\begin{itemize}
+    \item Shortest Path (SP):
+    \item Equal-Cost Multi-Path (ECMP):
+    \item K-Shortest Path:
+    \item Limited Length Spread K-shortest Path (LLKSR):
+\end{itemize}
 
 \section{Allocation in Jellyfish}
 \label{locality}
 
-When an application is submitted to be executed, the allocator is in charge of finding the appropiate set of resources to place it. 
-In this section we analize the allocation strategies used in \cite{llksp}.
+When an application is submitted to be executed, the allocator is in charge of finding the appropiate set of resources to place it. There are many works that propose allocation policies for other topologies such as meshes, tori \cite{tori} \cite{toritree}, or fattrees \cite{toritree} \cite{trees}, but, to the best of our knowledge, not for jellyfish. Only in \cite{llksp} the authors use some simple mono-application allocation policies without taking into account how these policies behave when multiple application run concurrently. In this section we describe and analize those policies adding a new version of one of them due to random structure of jellyfish.
+
+In order to define the allocation policies we must first assign assign a node ordering to the servers and switches that compose the network. Due to the random structure of jellyfish, we first define order the switches and then, inside each switch, we order the server consecutively.
 
 \begin{itemize}
-    \item Sequential: 
-    \item Random:
-    \item Trace-based allocation: 
+    \item Sequential: The tasks are assigned to the servers consecutively using the identity function.
+        \begin{equation}
+            \pi:T \rightarrow P\\
+            \pi(t_i)=p_i
+        \end{equation}
+    \item Random: The tasks of the application are assigned to the servers uniformly at random.
+        \begin{equation}
+            \pi:T \rightarrow P\\
+            \pi(t_i)=p_j where p_j is selected at random
+        \end{equation}
+    \item Random$^*$: This is a special version of the previouly presented policies. In this case we select a switch uniformy at random and then we map (k-r) tasks to the servers direcctly connected to it. 
+        \begin{equation}
+            \pi:T \rightarrow P\\
+            \pi(t_i)=p_j where p_j is selected at random
+        \end{equation}
 \end{itemize}
 
 
@@ -94,6 +129,17 @@ In this section we analize the allocation strategies used in \cite{llksp}.
 
 \section{Experimental Set-up}
 \label{experimental}
+
+\subsection{Simulation environment}
+\label{subsec:simulation}
+
+
+\subsection{Communication patterns}
+\label{subsec:communication}
+
+\subsection{Performance metrics}
+\label{subsec:performance}
+
 
 \section{Analysis of the Results}
 \label{analysis}
