@@ -6,7 +6,7 @@ set style line 1 lt -1 lw 0.5
 set key box linestyle 1
 set key out horiz center top
 
-set yrange[0:25000]
+set yrange[0:70000]
 set grid ytics
 
 #set format y "10^{%L}"
@@ -21,4 +21,4 @@ set output "graph.eps"
 set style data histogram
 set style histogram clustered
 
-plot "data" using 2:xticlabels(1) title columnheader, "data" using 3:xticlabels(1) title columnheader, "data" using 4:xticlabels(1) title columnheader, "data" using 5:xticlabels(1) title columnheader 
+plot "data" using 2:xticlabels(1) title columnheader, "data" using 3:xticlabels(1) title columnheader, "data" using 4:xticlabels(1) title columnheader, "data" using 5:xticlabels(1) title columnheader, "data" using 6:xticlabels(1) title columnheader 
