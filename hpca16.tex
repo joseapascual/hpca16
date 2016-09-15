@@ -33,7 +33,7 @@
 
 %%%%%%%%%%%---SETME-----%%%%%%%%%%%%%
 \title{Topologic-aware Allocation Policies for Jellyfish } 
-%\author{Jose A. Pascual, Javier Navaridas, Alejandro Erickson and Ian }
+\author{Jose A. Pascual, Javier Navaridas, Alejandro Erickson and Ian }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
@@ -133,17 +133,39 @@ In order to define the allocation policies we must first assign assign a node or
 %Results showed that, in average, the sequential policy performs the best. This results is expected because it maintains certain level of locality at a switch level. for some patterns such as  the random policy performs better than the sequential version.      
 
 
-\begin{figure}[t]
-  \begin{tikzpicture}
-    \input{plots/plot_dynamic_all2one}     
-  \end{tikzpicture}
-  \caption{Completion time in second employed to process three traffic patterns comparing.}
-\label{fig:plot-dynamic}
-\end{figure}
+%\begin{figure}[t]
+%  \begin{tikzpicture}
+%    \input{plots/plot_dynamic_all2one}     
+%  \end{tikzpicture}
+%  \caption{Completion time in second employed to process three traffic patterns comparing.}
+%\label{fig:plot-dynamic}
+%\end{figure}
 
 
 \section{Link utilization in jellyfish}
 \label{linkutilization}
+
+\begin{figure}[t]
+    \centering 
+    \includegraphics[width=\linewidth]{data/nlinks_used/graph_percent_all2all.eps}
+    \caption{}
+    \label{fig:jellyfish}
+\end{figure}
+
+\begin{figure}[t]
+    \centering 
+    \includegraphics[width=\linewidth]{data/nlinks_used/graph_percent_all2all_r.eps}
+    \caption{}
+    \label{fig:jellyfish}
+\end{figure}
+
+
+\begin{figure}[t]
+    \centering 
+    \includegraphics[width=\linewidth]{data/nlinks_used/graph_multiapp_all2all.eps}
+    \caption{}
+    \label{fig:jellyfish}
+\end{figure}
 
 
 
