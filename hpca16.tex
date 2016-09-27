@@ -15,6 +15,7 @@
 \usepackage{framed}
 \usepackage{epsfig}
 \usepackage{graphicx}
+\usepackage{subfig}
 
 %%%%%%%%%%%---SETME-----%%%%%%%%%%%%%
 \newcommand{\hpcasubmissionnumber}{NaN}
@@ -32,7 +33,7 @@
 \newtheorem{lemma}{Lemma}
 
 %%%%%%%%%%%---SETME-----%%%%%%%%%%%%%
-\title{Topologic-aware Allocation Policies for Jellyfish } 
+\title{Topology-aware Allocation Policies for Jellyfish } 
 \author{Jose A. Pascual, Javier Navaridas, Alejandro Erickson and Ian }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -142,32 +143,43 @@ In order to define the allocation policies we must first assign assign a node or
 %\end{figure}
 
 
-\section{Link utilization in jellyfish}
-\label{linkutilization}
+\subsection{One application's Link utilization}
+\label{linkutilization1app}
 
-\begin{figure}[t]
+The development of new routing policies for jellyfish was motivated due to the incapacity of classic policies to take advantadge of the high number of paths connecting every pair of switches. As a results, these policies, such as ksp or llskr, provide a great diversity for chosing paths connecting every pair of communicative severs. However, these policies have been only evaluated in mono-application scenarios where different applications do not compete for the use of the network resources. It is in those scenarios, where these policies could degrade the performance of the applications due to the high number of links used and hence, the increase share of the network links. In addition, the lack of causality in the communications used in those evaluations, does not represent the execution of real applications and , as we will see, it is an important performance facto in multi-applications scenarios.
+
+Let us start analyzing the number of links that an application composed of 64 tasks uses when performing all-to-all communications in networks with different number and types of switches. In particular we have used those summarized in Table \ref{table:network_parameters}. We have used sequential and random allocations, although the results are almost identical, we only have represented the former. The results will give us a hint of how much interference one application could create in the network and therefore affect the performance of other applications. Results are depicted in Figure \ref{fig:link_usage}. 
+
+\input{tables/topologies.tex}
+
+As we can see in Figure \ref{fig:percent_size} the number of used links is determined by the routing policy. The 65-task application in the smaller network uses all the links regardless of the used routing policy. However, as the size of the network increases, the number of used links also increases except for SP (XXX data). As a result, SP will generate less interference with other applications but, at the same time, provide less path diversity that could result in higher contention in the links and therefore less performance.
+
+\begin{figure*}[t]
     \centering 
-    \includegraphics[width=\linewidth]{data/nlinks_used/graph_percent_all2all.eps}
-    \caption{}
-    \label{fig:jellyfish}
-\end{figure}
+    \subfloat[Networks with differen size.]{\label{fig:percent_size}{\includegraphics[width=\columnwidth]{data/nlinks_used/graph_percent_all2all.eps}}}
+    \subfloat[Networks with different connectivity.]{\label{fig:percent_r}{\includegraphics[width=\columnwidth]{data/nlinks_used/graph_percent_all2all_r.eps}}}
+    \caption{Percent of used links by a 64-task all-to-all application using a sequential allocation}
+    \label{fig:link_usage}
+\end{figure*}
 
-\begin{figure}[t]
-    \centering 
-    \includegraphics[width=\linewidth]{data/nlinks_used/graph_percent_all2all_r.eps}
-    \caption{}
-    \label{fig:jellyfish}
-\end{figure}
+Regarding the other policies, it is clear that  
 
 
-\begin{figure}[t]
+\subsection{Multiple application's link utilization}
+\label{linkutilizationmultiapp}
+
+After measuring the way the routing policies affect the to the number of used links by one application let us see the influence of the routing policies in multi-application scenarios. To do so, we run multiple applications concurrently and measure the number of links shared by how mnay applications. These results allow us to quantify how much interference will generate each routing policy. The results are depicted in Figure \ref{fig:link_usage_multiapp} where the execution of 32 concurrent 64-task applications in a RRG(2048,32,31) network is represented.   
+
+\begin{figure}[h]
     \centering 
     \includegraphics[width=\linewidth]{data/nlinks_used/graph_multiapp_all2all.eps}
-    \caption{}
-    \label{fig:jellyfish}
+    \caption{Number of shared links used by multiple applications when running an all-to-all communication pattern using different routing policies.}
+    \label{fig:link_usage_multiapp}
 \end{figure}
 
+As espected, SP creates the lower contention among different applications being six the maximum number of application sharing links. However, the number of shared links is much higher than using other routing policies and could results in degraded applications performance. In contrast, if we focus on the other routing policies it is clear that different application shre much more links but the times those links are used are fewer. 
 
+Other interesting result is that as we increase the number of paths in the \textit{ksp} and \textit{llskr} policies the number of applications sharing communication links increases. In particular if we compare ksp-16 and llskr-16 we can see the effect of using shorter paths by the latter that result in less application sharing links due to the more \textit{communications}. 
 
 \section{Locality and Contiguity in Jellyfish}
 \label{locality}
