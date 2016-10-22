@@ -184,18 +184,15 @@ Other interesting result is that as we increase the number of paths in the \text
 \section{Locality and Contiguity in Jellyfish}
 \label{locality}
 
+As we have seen, the execution of concurrent application in jellyfish causes much interference between them. As a result, the perfomance of them can be affected. This effect has been widey studied for other topologies and the solution was the introduction of locality-aware allocation policies. The goal of these policies is to maintain the task composing the applications physically close in the network, thus reducing the presence of long paths, in order to avoid that contention. 
 
-\subsection{Contiguity}
-\label{contiguity}
+In this section we adapt the idea of those policies to jellyfish proposing two types of allocation policies: contiguous that avoids any interference with other applications and pseudo-contiguous that relaxes the constraint of the contiguous version allowing some interference between different applications. 
 
-\subsection{Locality}
-\label{locality}
+\subsection{Contiguous allocation}
+\label{contiguous}
 
-\subsection{Pseudo-contiguity}
-\label{pseudocontiguity}
-
-
-
+\subsection{Pseudo-ontiguous allocation}
+\label{contiguous}
 
 
 \section{Experimental Set-up}
